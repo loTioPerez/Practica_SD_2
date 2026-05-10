@@ -76,7 +76,6 @@ Practica_SD2/
 │
 ├── src/
 │   └── elastic_ticketing/
-│       │
 │       ├── shared/
 │       │   ├── config.py
 │       │   ├── constants.py
@@ -148,3 +147,33 @@ Practica_SD2/
     ├── test_workload_generation.py
     ├── test_fault_tolerance_requirements.py
     └── test_metrics_calculation.py
+
+### Flujo correcto sin duplicar lógica ###
+
+#### Compra no numerada ####
+
+RabbitMQ message
+   ↓
+Lambda worker
+   ↓
+PurchaseService.buy_unnumbered(...)
+   ↓
+UnnumberedService
+   ↓
+DynamoDB repository
+   ↓
+PurchaseResult
+
+### Compra numerada ###
+
+RabbitMQ message
+   ↓
+Lambda worker
+   ↓
+PurchaseService.buy_numbered(...)
+   ↓
+NumberedService
+   ↓
+DynamoDB repository
+   ↓
+PurchaseResult
