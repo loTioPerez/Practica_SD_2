@@ -22,10 +22,12 @@ class NumberedService:
             )
 
         if outcome.status is InventoryPurchaseStatus.DUPLICATE_REQUEST:
-            return outcome.existing_result or PurchaseResult.rejected_for(
-                request,
-                RejectionReason.DUPLICATE_REQUEST,
-            )
+            if outcome.existing_result is None:
+                raise ValueError(
+                    "Duplicate numbered purchases must include the stored "
+                    "result for the repeated request."
+                )
+            return outcome.existing_result
 
         raise ValueError(
             "Unsupported inventory outcome for numbered purchase: "

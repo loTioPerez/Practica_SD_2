@@ -11,6 +11,9 @@ class TicketRepository(ABC):
 
     Concrete adapters are responsible for enforcing consistency and
     request-level idempotency when these operations hit the real backend.
+    If a repeated request is detected during the atomic operation, the
+    repository must return ``DUPLICATE_REQUEST`` together with the exact
+    stored ``PurchaseResult`` for that request.
     """
 
     @abstractmethod
