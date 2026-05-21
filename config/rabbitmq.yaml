@@ -1,0 +1,9 @@
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password_env: ELASTIC_TICKETING_RABBITMQ_PASSWORD
+  virtual_host: /
+  queue_name: ticket-purchases
+  dlq_name: ticket-purchases.dlq
+  prefetch_count: 1

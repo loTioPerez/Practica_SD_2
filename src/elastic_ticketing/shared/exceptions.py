@@ -12,3 +12,7 @@ class DependencyUnavailableError(ElasticTicketingError):
 
 class PersistenceError(ElasticTicketingError):
     """Raised when a persistence adapter cannot satisfy its contract."""
+
+
+class SerializationError(ElasticTicketingError):
+    """Raised when queue or config payloads cannot be parsed safely."""

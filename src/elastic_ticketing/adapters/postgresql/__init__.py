@@ -6,6 +6,7 @@ __all__ = [
     "PostgresTicketRepository",
     "UNNUMBERED_INVENTORY_TABLE",
     "create_connection",
+    "execute_statements",
     "create_schema_sql",
     "drop_schema_sql",
     "make_connection_factory",
@@ -14,11 +15,16 @@ __all__ = [
 
 
 def __getattr__(name: str):
-    if name in {"create_connection", "make_connection_factory"}:
-        from .connection import create_connection, make_connection_factory
+    if name in {"create_connection", "execute_statements", "make_connection_factory"}:
+        from .connection import (
+            create_connection,
+            execute_statements,
+            make_connection_factory,
+        )
 
         return {
             "create_connection": create_connection,
+            "execute_statements": execute_statements,
             "make_connection_factory": make_connection_factory,
         }[name]
 
