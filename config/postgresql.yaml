@@ -1,0 +1,7 @@
+postgresql:
+  host: localhost
+  port: 5432
+  database: elastic_ticketing
+  user: postgres
+  password_env: ELASTIC_TICKETING_POSTGRES_PASSWORD
+  sslmode: prefer
